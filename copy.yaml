@@ -1,0 +1,9 @@
+--- #conditionals
+- hosts: webservers:dbservers
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: copy file from server to host
+      copy: src=/home/ansible/vars.yaml dest=/home/ansible
+        #after executing the playbook also we can create the file, which is to be copied

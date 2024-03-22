@@ -1,0 +1,35 @@
+--- #Tomact setup
+- hosts: webservers
+  become: yes
+  user: ansible
+  connection: ssh
+  tasks:
+    - name: Install Java
+      action: yum name=java state=latest
+      when: ansible_os_family=="RedHat"
+
+    - name: Install java on Debian machines
+      action: apt-get name=default-jdk state=installed
+      when: ansible_os_family=="Debian"
+    - name: Download Tomcat
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.99/bin/apache-tomcat-8.5.99.tar.gz
+        dest: /home/ansible
+        mode: '0440'
+
+    - name: unarchive the tar file
+      unarchive:
+        src: /home/ansible/apache-tomcat-8.5.99.tar.gz
+        dest: /home/ansible
+        remote_src: yes
+
+    - name: Permission to files
+      file:
+        path: /home/ansible/apache-tomcat-8.5.99/bin/startup.sh
+        mode: '0777'
+
+    - name: Execute the script
+      shell: ./startup.sh
+      args:
+        chdir: /home/ansible/apache-tomcat-8.5.99/bin
+              

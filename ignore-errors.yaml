@@ -1,0 +1,18 @@
+--- #my playbook
+- hosts: webservers
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: to install httpd
+      action: yum name=htttpd state=present
+      ignore_errors: yes
+    - name: to install tree
+      action: yum name=tree state=present   
+
+        
+        
+        
+#Firstly, write two tasks whithout any mistake and execute them without ignore_errors: yes
+#Then, in first task write any mistake and execute them without ignors_errors: yes
+#Finally , with any mistake in task 1 and including ignore_errors: yes execute them.

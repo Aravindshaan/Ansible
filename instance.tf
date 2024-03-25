@@ -1,3 +1,13 @@
+Install Terraform
+copy terraform file to /usr/local/bin i.e global env, is this done to do terraform work from any location.
+create a IAM user with AdministratorAccess
+In the Ec2 instance run below command
+        aws configure --profile <IAM user name>
+while mentioning Key_name don't give extention like .pem 
+
+Below is the sample .tf file for creating an instance
+
+
 provider "aws" {
   profile    = "terraform_user"
   access_key = "AKIA376645I4W3527BOT"

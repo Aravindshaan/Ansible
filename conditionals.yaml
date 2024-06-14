@@ -1,0 +1,10 @@
+--- #conditionals
+- hosts: webservers:dbservers 
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: install httpd 
+      command: yum install httpd 
+      when: ansible_os_family=="RedHat"
+                            #=="Debian"

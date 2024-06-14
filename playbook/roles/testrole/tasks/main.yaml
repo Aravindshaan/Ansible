@@ -1,0 +1,3 @@
+- name: installing httpd
+  action: yum name='{{pkgname}}' state=present
+  notify: Start service

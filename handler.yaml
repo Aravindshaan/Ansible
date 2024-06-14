@@ -1,0 +1,17 @@
+--- # Handler
+- hosts: dbservers:webservers[0]
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: To install httpd
+      action: yum name=httpd state=present
+        #  notify: To start httpd service
+
+  handlers:      
+    - name: To start httpd service
+      action: service name=httpd state=started    
+
+# We use Handlers whenever there is a dependency between two tasks,
+# It will not execute the second task until it execute the first task
+# Notify and name in handler must be same.

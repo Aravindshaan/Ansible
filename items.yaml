@@ -1,0 +1,23 @@
+--- # Using items
+- hosts: webservers:dbservers
+  user: ansible
+  become: yes
+  connection: ssh
+  tasks:
+    - name: To create multiple users
+      action: user name='{{item}}' state=present
+      with_items:
+        - aravind
+        - Raviteja
+        - johncena
+        - randyorton
+
+          # state=absent to delete user
+          # can also install multiple packages
+          # action: yum name='{{item}}' state=present
+            with_items:
+              - git
+              - httpd
+              - tree
+              - mysql
+

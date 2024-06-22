@@ -9,6 +9,7 @@ resource "aws_subnet" "subnet1" {
   vpc_id=aws_vpc.vpc_1.id
   cidr_block="10.0.0.0/24"
   availability_zone="ap-south-1b"
+  map_public_ip_on_launch = true
 }
 resource "aws_security_group" "allow_ssh" {
   name="allow ssh"
